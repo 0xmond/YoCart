@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+    <script>
+      const socket = io(
+        'http://localhost:3000', <!--backend-->
+        {
+          auth: {
+            accessToken:
+              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODAzYTU2YjFiN2IyOTc2YWU0YzJhMzUiLCJlbWFpbCI6InVzZXJAZ21haWwuY29tIiwiaWF0IjoxNzQ1MTg2MzczLCJleHAiOjE3NzY3NDM5NzN9.95oUmFDFAbjwMlyFts154KOZGFMazLQ6F-0dOd1ofbA',
+          },
+        },
+      );
+
+      socket.on('product-stock-updated', (data) => {
+        console.log(data);
+      });
+
+      socket.on('connect', () => {
+        console.log('connected', socket.id);
+      });
+    </script>
+  </body>
+</html>
